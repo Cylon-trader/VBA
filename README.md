@@ -1,7 +1,5 @@
 # VBA
 This is MS Excel macro with "Transactions sorter by address" - similar than "One click Pivot table".
-For using it you need text copied from w8io.ru (ctrl+A), previously filtered for interested currency (click on Waves, for example).
-The link would be like this: https://w8io.ru/Address/f/Waves  - where Address is the Waves account address
 
 1. Activate the "Developer" tab on Excel
   1.1 Right click anywhere on the ribbon, and then click "Customize the Ribbon".
@@ -18,7 +16,7 @@ The link would be like this: https://w8io.ru/Address/f/Waves  - where Address is
 3. Copy data from the w8io to the Excel
   3.1 Open the https://w8io.ru and paste the /WavesAddress after the website link
   3.2 Filter transactions for interested currency (click on Waves, for example)
-  3.3 The link would be like this: https://w8io.ru/WavesAddressAddress/f/Waves
+  3.3 The link would be like this: https://w8io.ru/WavesAddress/f/Waves
   3.4 Copy all data (ctrl+a) from the w8io and past to the Excel's A1 cell
 
 4. Run the macro
