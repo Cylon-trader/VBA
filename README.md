@@ -1,5 +1,5 @@
 # VBA
-This is MS Excel macro with "Transactions sorter by address".
+This is MS Excel macro with "Transactions sorter by address" - similar than "One click Pivot table".
 For using it you need text copied from w8io.ru (ctrl+A), previously filtered for interested currency (click on Waves, for example).
 The link would be like this: https://w8io.ru/Address/f/Waves  - where Address is the Waves account address
 
