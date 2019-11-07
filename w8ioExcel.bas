@@ -1,6 +1,4 @@
-Attribute VB_Name = "w8ioExcel"
 Sub SummOrdersForAds()
-Attribute SummOrdersForAds.VB_ProcData.VB_Invoke_Func = " \n14"
 
 'save main address
 mainA = Cells(1, 1).Value
@@ -160,7 +158,10 @@ Cells(1, 7).Interior.Color = RGB(r, g, B)
 
 'check the other raws
 For i = 2 To n
-    If Cells(i, 7).Value = Cells(i - 1, 7).Value Then
+    prevA = Cells(i - 1, 7).Value
+    currA = Cells(i, 7).Value
+    nextA = Cells(i + 1, 7).Value
+    If currA = prevA Then
         summ = summ + Cells(i, 8).Value
         na = na + 1
         Cells(i, 7).Interior.Color = RGB(r, g, B)
@@ -170,12 +171,19 @@ For i = 2 To n
         GoSub randomColor
         Cells(i, 7).Interior.Color = RGB(r, g, B)
     End If
-    If Cells(i + 1, 7).Value <> Cells(i, 7).Value Then
-        k = k + 1
+    If nextA <> currA Then
         Cells(k, 9).Value = na
-        Cells(k, 10).Value = Cells(i, 7).Value
-        Cells(k, 11).Value = Fix(summ)
-        Cells(k, 12).Value = summ - Fix(summ)
+        'if not address and not alias
+        If Left(currA, 2) <> "3P" And Asc(Left(currA, 1)) < 91 Then
+            Cells(k, 10).Value = currA & " " & summ
+            Debug.Print Cells(k, 10).Value
+            tsumm = tsumm - summ
+        Else
+            k = k + 1
+            Cells(k, 10).Value = currA
+            Cells(k, 11).Value = Fix(summ)
+            Cells(k, 12).Value = summ - Fix(summ)
+        End If
     End If
     tsumm = tsumm + Cells(i, 8).Value
 Next
