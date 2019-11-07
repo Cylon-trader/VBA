@@ -172,14 +172,13 @@ For i = 2 To n
         Cells(i, 7).Interior.Color = RGB(r, g, B)
     End If
     If nextA <> currA Then
+        k = k + 1
         Cells(k, 9).Value = na
         'if not address and not alias
         If Left(currA, 2) <> "3P" And Asc(Left(currA, 1)) < 91 Then
             Cells(k, 10).Value = currA & " " & summ
-            Debug.Print Cells(k, 10).Value
             tsumm = tsumm - summ
         Else
-            k = k + 1
             Cells(k, 10).Value = currA
             Cells(k, 11).Value = Fix(summ)
             Cells(k, 12).Value = summ - Fix(summ)
