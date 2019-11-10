@@ -118,6 +118,9 @@ Select Case txtype
         txtype = "(" & txtype & ")"
 End Select
 
+Set s = Columns("D:D").Find(txtype)
+If s Is Nothing Then GoTo NothingFinded
+
 n = Cells(Rows.Count, 4).End(xlUp).Row
 For i = 1 To n
 Repeat:
@@ -142,7 +145,13 @@ Selection.Sort Key1:=Range("G1"), Order1:=xlAscending, Key2:=Range("H1") _
 :=xlSortTextAsNumbers
         
 'check the 1st raw
-n = Cells(Rows.Count, 7).End(xlUp).Row
+If Cells(1, 7).Value = "" Then
+    n = 0
+    GoTo NothingFinded
+Else
+    n = Cells(Rows.Count, 7).End(xlUp).Row
+End If
+
 summ = Cells(1, 8).Value
 tsumm = summ
 na = 1
@@ -187,6 +196,7 @@ For i = 2 To n
     tsumm = tsumm + Cells(i, 8).Value
 Next
 
+NothingFinded:
 'sorting by size
 Columns("I:L").Select
 Selection.Sort Key1:=Range("K1"), Order1:=xlAscending, Header:=xlGuess, OrderCustom:=1 _
