@@ -119,7 +119,13 @@ Select Case txtype
 End Select
 
 Set s = Columns("D:D").Find(txtype)
-If s Is Nothing Then GoTo NothingFinded
+If s Is Nothing Then
+    Columns("A:I").Select
+    Selection.ClearContents
+    ActiveSheet.Name = txtype
+    k = 0: n = 0: tsumm = 0
+    GoTo NothingFinded
+End If
 
 n = Cells(Rows.Count, 4).End(xlUp).Row
 For i = 1 To n
@@ -196,12 +202,12 @@ For i = 2 To n
     tsumm = tsumm + Cells(i, 8).Value
 Next
 
-NothingFinded:
 'sorting by size
 Columns("I:L").Select
 Selection.Sort Key1:=Range("K1"), Order1:=xlAscending, Header:=xlGuess, OrderCustom:=1 _
 , MatchCase:=False, Orientation:=xlTopToBottom, DataOption1:=xlSortTextAsNumbers
 
+NothingFinded:
 Cells(k + 2, 10).Value = "total addresses"
 Cells(k + 2, 11).Value = "total summ"
 Cells(k + 3, 10).Value = k
@@ -225,3 +231,4 @@ Return
 Application.UseSystemSeparators = True
 
 End Sub
+
