@@ -219,6 +219,8 @@ Columns("A:Z").Select
 Selection.Columns.AutoFit
 Range("K" & k + 2 & ":" & "L" & k + 2).Select
 Selection.Merge
+ 
+Application.UseSystemSeparators = True                        
 
 Exit Sub
 
@@ -227,8 +229,6 @@ randomColor:
     g = WorksheetFunction.RandBetween(150, 255)
     B = WorksheetFunction.RandBetween(150, 255)
 Return
-
-Application.UseSystemSeparators = True
 
 End Sub
 
